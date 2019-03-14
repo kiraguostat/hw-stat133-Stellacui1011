@@ -2,11 +2,11 @@
 
 Private Repository for HW assignments of Stat 133 (Spring 2019)
 
-- Name: Your name (first last)
-- Github username: usrname
-- Email: address [at] email.com
-- Lab section: 101
-- GSI: Leia Organa
+- Name: Your name (Stella Cui)
+- Github username: Stellacui1011
+- Email: address [at] stellacui@berkeley.edu
+- Lab section: 107
+- GSI: N/A
 
 -----
 
