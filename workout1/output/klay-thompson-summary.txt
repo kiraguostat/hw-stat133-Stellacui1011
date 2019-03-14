@@ -1,0 +1,442 @@
+  team_name          game_date             season         period      minutes_remaining
+ Length:1220        Length:1220        Min.   :2016   Min.   :1.000   Min.   : 0.000   
+ Class :character   Class :character   1st Qu.:2016   1st Qu.:1.000   1st Qu.: 4.000   
+ Mode  :character   Mode  :character   Median :2016   Median :2.000   Median : 7.000   
+                                       Mean   :2016   Mean   :2.369   Mean   : 6.511   
+                                       3rd Qu.:2016   3rd Qu.:3.000   3rd Qu.: 9.000   
+                                       Max.   :2016   Max.   :4.000   Max.   :11.000   
+                                                                                       
+ seconds_remaining shot_made_flag                  action_type           shot_type  
+ Min.   : 0.00     Length:1220        Jump Shot          :688   2PT Field Goal:640  
+ 1st Qu.:14.00     Class :character   Pullup Jump shot   :171   3PT Field Goal:580  
+ Median :29.50     Mode  :character   Cutting Layup Shot : 48                       
+ Mean   :29.19                        Layup Shot         : 44                       
+ 3rd Qu.:44.00                        Step Back Jump shot: 34                       
+ Max.   :59.00                        Driving Layup Shot : 33                       
+                                      (Other)            :202                       
+ shot_distance     opponent               x                 y             name          
+ Min.   : 0.00   Length:1220        Min.   :-248.00   Min.   :-29.0   Length:1220       
+ 1st Qu.:12.00   Class :character   1st Qu.: -68.00   1st Qu.: 16.0   Class :character  
+ Median :20.00   Mode  :character   Median :  14.50   Median :105.0   Mode  :character  
+ Mean   :17.16                      Mean   :  24.89   Mean   :106.0                     
+ 3rd Qu.:25.00                      3rd Qu.: 145.25   3rd Qu.:179.2                     
+ Max.   :32.00                      Max.   : 246.00   Max.   :311.0                     
+                                                                                        
+     minute     
+ Min.   : 1.00  
+ 1st Qu.: 9.00  
+ Median :23.00  
+ Mean   :21.91  
+ 3rd Qu.:32.00  
+ Max.   :48.00  
+                
+function (file = NULL, append = FALSE, type = c("output", "message"), 
+    split = FALSE) 
+{
+    type <- match.arg(type)
+    if (type == "message") {
+        if (is.null(file)) 
+            file <- stderr()
+        else if (!inherits(file, "connection") || !isOpen(file)) 
+            stop("'file' must be NULL or an already open connection")
+        if (split) 
+            stop("cannot split the message connection")
+        .Internal(sink(file, FALSE, TRUE, FALSE))
+    }
+    else {
+        closeOnExit <- FALSE
+        if (is.null(file)) 
+            file <- -1L
+        else if (is.character(file)) {
+            file <- file(file, if (append) 
+                "a"
+            else "w")
+            closeOnExit <- TRUE
+        }
+        else if (!inherits(file, "connection")) 
+            stop("'file' must be NULL, a connection or a character string")
+        .Internal(sink(file, closeOnExit, FALSE, split))
+    }
+}
+<bytecode: 0x10b36a0e8>
+<environment: namespace:base>
+    X             team_name game_date season period minutes_remaining seconds_remaining
+1   1 Golden State Warriors  12/15/16   2016      3                 3                51
+2   2 Golden State Warriors  10/28/16   2016      3                 9                14
+3   3 Golden State Warriors   11/1/16   2016      2                 5                 8
+4   4 Golden State Warriors   12/1/16   2016      3                 5                27
+5   5 Golden State Warriors    4/4/17   2016      3                 2                 4
+6   6 Golden State Warriors  11/19/16   2016      4                 5                36
+7   7 Golden State Warriors  11/21/16   2016      3                 9                51
+8   8 Golden State Warriors   3/29/17   2016      2                 1                40
+9   9 Golden State Warriors  11/25/16   2016      3                10                59
+10 10 Golden State Warriors  12/28/16   2016      3                 3                54
+11 11 Golden State Warriors   3/28/17   2016      4                 9                36
+12 12 Golden State Warriors  12/11/16   2016      4                 3                34
+13 13 Golden State Warriors  12/10/16   2016      3                 4                12
+14 14 Golden State Warriors   2/27/17   2016      1                 9                29
+15 15 Golden State Warriors    3/6/17   2016      1                 1                40
+16 16 Golden State Warriors   3/21/17   2016      1                 8                40
+17 17 Golden State Warriors   12/3/16   2016      3                 9                14
+18 18 Golden State Warriors   2/27/17   2016      4                 5                51
+19 19 Golden State Warriors   12/7/16   2016      1                 3                 8
+20 20 Golden State Warriors   3/16/17   2016      3                 5                51
+21 21 Golden State Warriors    1/6/17   2016      1                 8                39
+22 22 Golden State Warriors  10/28/16   2016      3                 3                12
+23 23 Golden State Warriors  11/23/16   2016      3                 2                55
+24 24 Golden State Warriors    2/2/17   2016      4                 6                16
+25 25 Golden State Warriors  12/17/16   2016      1                 3                20
+26 26 Golden State Warriors  12/20/16   2016      2                 1                36
+27 27 Golden State Warriors  11/25/16   2016      4                 2                31
+28 28 Golden State Warriors   3/26/17   2016      3                 8                 9
+29 29 Golden State Warriors   2/10/17   2016      1                 2                41
+30 30 Golden State Warriors   1/28/17   2016      1                11                22
+31 31 Golden State Warriors  12/25/16   2016      4                 4                28
+32 32 Golden State Warriors  11/19/16   2016      3                 8                 3
+33 33 Golden State Warriors  11/23/16   2016      2                 2                41
+34 34 Golden State Warriors   2/15/17   2016      1                 9                28
+35 35 Golden State Warriors   12/7/16   2016      1                 7                 6
+36 36 Golden State Warriors   12/7/16   2016      2                 4                38
+37 37 Golden State Warriors  11/21/16   2016      3                 6                46
+38 38 Golden State Warriors    1/6/17   2016      4                 1                20
+39 39 Golden State Warriors  11/26/16   2016      1                 2                41
+40 40 Golden State Warriors    2/2/17   2016      1                 4                 7
+41 41 Golden State Warriors  11/13/16   2016      2                 5                30
+42 42 Golden State Warriors   11/9/16   2016      2                 8                42
+43 43 Golden State Warriors    1/4/17   2016      1                 5                53
+44 44 Golden State Warriors  11/18/16   2016      2                 1                52
+45 45 Golden State Warriors  11/18/16   2016      4                 0                48
+46 46 Golden State Warriors  11/13/16   2016      3                 1                 6
+47 47 Golden State Warriors   3/29/17   2016      3                 5                22
+48 48 Golden State Warriors    1/2/17   2016      1                 2                24
+49 49 Golden State Warriors   2/25/17   2016      4                 2                59
+50 50 Golden State Warriors  11/16/16   2016      1                 7                22
+51 51 Golden State Warriors    4/4/17   2016      1                10                16
+52 52 Golden State Warriors   2/23/17   2016      3                 1                52
+53 53 Golden State Warriors   3/29/17   2016      1                 1                49
+54 54 Golden State Warriors  12/28/16   2016      4                 0                13
+55 55 Golden State Warriors  12/20/16   2016      1                 1                 0
+56 56 Golden State Warriors  11/26/16   2016      3                 2                 9
+57 57 Golden State Warriors  11/26/16   2016      4                 5                 3
+58 58 Golden State Warriors  12/30/16   2016      1                 7                31
+59 59 Golden State Warriors  12/20/16   2016      1                 1                49
+60 60 Golden State Warriors   3/29/17   2016      2                 0                49
+61 61 Golden State Warriors  11/19/16   2016      4                 2                47
+62 62 Golden State Warriors  11/18/16   2016      3                 7                18
+   shot_made_flag                    action_type      shot_type shot_distance
+1        shot_yes Cutting Finger Roll Layup Shot 2PT Field Goal             3
+2        shot_yes Cutting Finger Roll Layup Shot 2PT Field Goal             2
+3        shot_yes Cutting Finger Roll Layup Shot 2PT Field Goal             2
+4        shot_yes Cutting Finger Roll Layup Shot 2PT Field Goal             0
+5        shot_yes Cutting Finger Roll Layup Shot 2PT Field Goal             2
+6        shot_yes Cutting Finger Roll Layup Shot 2PT Field Goal             0
+7        shot_yes Cutting Finger Roll Layup Shot 2PT Field Goal             0
+8        shot_yes Cutting Finger Roll Layup Shot 2PT Field Goal             2
+9        shot_yes             Cutting Layup Shot 2PT Field Goal             1
+10       shot_yes             Cutting Layup Shot 2PT Field Goal             1
+11       shot_yes             Cutting Layup Shot 2PT Field Goal             0
+12       shot_yes             Cutting Layup Shot 2PT Field Goal             1
+13        shot_no             Cutting Layup Shot 2PT Field Goal             2
+14       shot_yes             Cutting Layup Shot 2PT Field Goal             0
+15       shot_yes             Cutting Layup Shot 2PT Field Goal             2
+16       shot_yes             Cutting Layup Shot 2PT Field Goal             1
+17       shot_yes             Cutting Layup Shot 2PT Field Goal             1
+18       shot_yes             Cutting Layup Shot 2PT Field Goal             1
+19       shot_yes             Cutting Layup Shot 2PT Field Goal             2
+20        shot_no             Cutting Layup Shot 2PT Field Goal             2
+21       shot_yes             Cutting Layup Shot 2PT Field Goal             1
+22       shot_yes             Cutting Layup Shot 2PT Field Goal             1
+23       shot_yes             Cutting Layup Shot 2PT Field Goal             1
+24       shot_yes             Cutting Layup Shot 2PT Field Goal             2
+25       shot_yes             Cutting Layup Shot 2PT Field Goal             2
+26       shot_yes             Cutting Layup Shot 2PT Field Goal             1
+27       shot_yes             Cutting Layup Shot 2PT Field Goal             0
+28        shot_no             Cutting Layup Shot 2PT Field Goal             2
+29       shot_yes             Cutting Layup Shot 2PT Field Goal             2
+30       shot_yes             Cutting Layup Shot 2PT Field Goal             1
+31       shot_yes             Cutting Layup Shot 2PT Field Goal             0
+32       shot_yes             Cutting Layup Shot 2PT Field Goal             0
+33       shot_yes             Cutting Layup Shot 2PT Field Goal             1
+34       shot_yes             Cutting Layup Shot 2PT Field Goal             1
+35       shot_yes             Cutting Layup Shot 2PT Field Goal             2
+36       shot_yes             Cutting Layup Shot 2PT Field Goal             2
+37       shot_yes              Driving Bank shot 2PT Field Goal            11
+38       shot_yes              Driving Bank shot 2PT Field Goal             6
+39       shot_yes              Driving Bank shot 2PT Field Goal             3
+40       shot_yes              Driving Bank shot 2PT Field Goal             5
+41       shot_yes              Driving Bank shot 2PT Field Goal            11
+42       shot_yes Driving Finger Roll Layup Shot 2PT Field Goal             1
+43       shot_yes Driving Finger Roll Layup Shot 2PT Field Goal             2
+44       shot_yes Driving Finger Roll Layup Shot 2PT Field Goal             2
+45       shot_yes Driving Finger Roll Layup Shot 2PT Field Goal             1
+46       shot_yes Driving Finger Roll Layup Shot 2PT Field Goal             2
+47       shot_yes Driving Finger Roll Layup Shot 2PT Field Goal             1
+48        shot_no Driving Finger Roll Layup Shot 2PT Field Goal             2
+49       shot_yes Driving Finger Roll Layup Shot 2PT Field Goal             3
+50       shot_yes Driving Finger Roll Layup Shot 2PT Field Goal             3
+51        shot_no Driving Finger Roll Layup Shot 2PT Field Goal             3
+52       shot_yes Driving Finger Roll Layup Shot 2PT Field Goal             2
+53        shot_no Driving Finger Roll Layup Shot 2PT Field Goal             0
+54       shot_yes Driving Finger Roll Layup Shot 2PT Field Goal             1
+55        shot_no Driving Finger Roll Layup Shot 2PT Field Goal             2
+56       shot_yes Driving Finger Roll Layup Shot 2PT Field Goal             2
+57       shot_yes Driving Finger Roll Layup Shot 2PT Field Goal             1
+58       shot_yes Driving Finger Roll Layup Shot 2PT Field Goal             0
+59       shot_yes Driving Finger Roll Layup Shot 2PT Field Goal             2
+60       shot_yes Driving Finger Roll Layup Shot 2PT Field Goal             1
+61       shot_yes Driving Finger Roll Layup Shot 2PT Field Goal             1
+62       shot_yes Driving Finger Roll Layup Shot 2PT Field Goal             1
+                 opponent    x  y          name minute
+1         New York Knicks   25 21 Stephen Curry     33
+2    New Orleans Pelicans    9 26 Stephen Curry     27
+3  Portland Trail Blazers  -22  2 Stephen Curry     19
+4         Houston Rockets    2  7 Stephen Curry     31
+5  Minnesota Timberwolves    1 26 Stephen Curry     34
+6         Milwaukee Bucks    2  7 Stephen Curry     43
+7          Indiana Pacers   -1  2 Stephen Curry     27
+8       San Antonio Spurs   28  0 Stephen Curry     23
+9      Los Angeles Lakers   13  6 Stephen Curry     26
+10        Toronto Raptors   -9  8 Stephen Curry     33
+11        Houston Rockets   -4 -5 Stephen Curry     39
+12 Minnesota Timberwolves   14  7 Stephen Curry     45
+13      Memphis Grizzlies  -24 -6 Stephen Curry     32
+14     Philadelphia 76ers   -7 -6 Stephen Curry      3
+15          Atlanta Hawks   20  7 Stephen Curry     11
+16       Dallas Mavericks   12 -1 Stephen Curry      4
+17           Phoenix Suns    0 11 Stephen Curry     27
+18     Philadelphia 76ers   12  7 Stephen Curry     43
+19   Los Angeles Clippers   -7 21 Stephen Curry      9
+20          Orlando Magic   22 18 Stephen Curry     31
+21      Memphis Grizzlies    4 11 Stephen Curry      4
+22   New Orleans Pelicans   17  7 Stephen Curry     33
+23     Los Angeles Lakers    1 11 Stephen Curry     34
+24   Los Angeles Clippers   22 16 Stephen Curry     42
+25 Portland Trail Blazers   -1 23 Stephen Curry      9
+26              Utah Jazz   -1 16 Stephen Curry     23
+27     Los Angeles Lakers    8 -2 Stephen Curry     46
+28      Memphis Grizzlies    9 21 Stephen Curry     28
+29      Memphis Grizzlies   24  7 Stephen Curry     10
+30   Los Angeles Clippers   -7 16 Stephen Curry      1
+31    Cleveland Cavaliers    1 -5 Stephen Curry     44
+32        Milwaukee Bucks    0  7 Stephen Curry     28
+33     Los Angeles Lakers   10 16 Stephen Curry     22
+34       Sacramento Kings    6 16 Stephen Curry      3
+35   Los Angeles Clippers   25  2 Stephen Curry      5
+36   Los Angeles Clippers    6 21 Stephen Curry     20
+37         Indiana Pacers -110 36 Stephen Curry     30
+38      Memphis Grizzlies  -43 46 Stephen Curry     47
+39 Minnesota Timberwolves   12 31 Stephen Curry     10
+40   Los Angeles Clippers  -52 18 Stephen Curry      8
+41           Phoenix Suns  -70 85 Stephen Curry     19
+42       Dallas Mavericks   10 16 Stephen Curry     16
+43 Portland Trail Blazers   -7 26 Stephen Curry      7
+44         Boston Celtics  -25  7 Stephen Curry     23
+45         Boston Celtics   -9 16 Stephen Curry     48
+46           Phoenix Suns   -1 21 Stephen Curry     35
+47      San Antonio Spurs    9 -5 Stephen Curry     31
+48         Denver Nuggets   17 11 Stephen Curry     10
+49          Brooklyn Nets   20 23 Stephen Curry     46
+50        Toronto Raptors  -29 11 Stephen Curry      5
+51 Minnesota Timberwolves   22 26 Stephen Curry      2
+52   Los Angeles Clippers  -12 16 Stephen Curry     35
+53      San Antonio Spurs   -2  8 Stephen Curry     11
+54        Toronto Raptors    0 16 Stephen Curry     48
+55              Utah Jazz   -9 28 Stephen Curry     11
+56 Minnesota Timberwolves    0 26 Stephen Curry     34
+57 Minnesota Timberwolves    6 16 Stephen Curry     43
+58       Dallas Mavericks    2  7 Stephen Curry      5
+59              Utah Jazz    2 21 Stephen Curry     11
+60      San Antonio Spurs  -19  2 Stephen Curry     24
+61        Milwaukee Bucks   15  7 Stephen Curry     46
+62         Boston Celtics    9 -5 Stephen Curry     29
+ [ reached 'max' / getOption("max.print") -- omitted 4272 rows ]
+    X             team_name game_date season period minutes_remaining seconds_remaining
+1   1 Golden State Warriors  12/15/16   2016      3                 3                51
+2   2 Golden State Warriors  10/28/16   2016      3                 9                14
+3   3 Golden State Warriors   11/1/16   2016      2                 5                 8
+4   4 Golden State Warriors   12/1/16   2016      3                 5                27
+5   5 Golden State Warriors    4/4/17   2016      3                 2                 4
+6   6 Golden State Warriors  11/19/16   2016      4                 5                36
+7   7 Golden State Warriors  11/21/16   2016      3                 9                51
+8   8 Golden State Warriors   3/29/17   2016      2                 1                40
+9   9 Golden State Warriors  11/25/16   2016      3                10                59
+10 10 Golden State Warriors  12/28/16   2016      3                 3                54
+11 11 Golden State Warriors   3/28/17   2016      4                 9                36
+12 12 Golden State Warriors  12/11/16   2016      4                 3                34
+13 13 Golden State Warriors  12/10/16   2016      3                 4                12
+14 14 Golden State Warriors   2/27/17   2016      1                 9                29
+15 15 Golden State Warriors    3/6/17   2016      1                 1                40
+16 16 Golden State Warriors   3/21/17   2016      1                 8                40
+17 17 Golden State Warriors   12/3/16   2016      3                 9                14
+18 18 Golden State Warriors   2/27/17   2016      4                 5                51
+19 19 Golden State Warriors   12/7/16   2016      1                 3                 8
+20 20 Golden State Warriors   3/16/17   2016      3                 5                51
+21 21 Golden State Warriors    1/6/17   2016      1                 8                39
+22 22 Golden State Warriors  10/28/16   2016      3                 3                12
+23 23 Golden State Warriors  11/23/16   2016      3                 2                55
+24 24 Golden State Warriors    2/2/17   2016      4                 6                16
+25 25 Golden State Warriors  12/17/16   2016      1                 3                20
+26 26 Golden State Warriors  12/20/16   2016      2                 1                36
+27 27 Golden State Warriors  11/25/16   2016      4                 2                31
+28 28 Golden State Warriors   3/26/17   2016      3                 8                 9
+29 29 Golden State Warriors   2/10/17   2016      1                 2                41
+30 30 Golden State Warriors   1/28/17   2016      1                11                22
+31 31 Golden State Warriors  12/25/16   2016      4                 4                28
+32 32 Golden State Warriors  11/19/16   2016      3                 8                 3
+33 33 Golden State Warriors  11/23/16   2016      2                 2                41
+34 34 Golden State Warriors   2/15/17   2016      1                 9                28
+35 35 Golden State Warriors   12/7/16   2016      1                 7                 6
+36 36 Golden State Warriors   12/7/16   2016      2                 4                38
+37 37 Golden State Warriors  11/21/16   2016      3                 6                46
+38 38 Golden State Warriors    1/6/17   2016      4                 1                20
+39 39 Golden State Warriors  11/26/16   2016      1                 2                41
+40 40 Golden State Warriors    2/2/17   2016      1                 4                 7
+41 41 Golden State Warriors  11/13/16   2016      2                 5                30
+42 42 Golden State Warriors   11/9/16   2016      2                 8                42
+43 43 Golden State Warriors    1/4/17   2016      1                 5                53
+44 44 Golden State Warriors  11/18/16   2016      2                 1                52
+45 45 Golden State Warriors  11/18/16   2016      4                 0                48
+46 46 Golden State Warriors  11/13/16   2016      3                 1                 6
+47 47 Golden State Warriors   3/29/17   2016      3                 5                22
+48 48 Golden State Warriors    1/2/17   2016      1                 2                24
+49 49 Golden State Warriors   2/25/17   2016      4                 2                59
+50 50 Golden State Warriors  11/16/16   2016      1                 7                22
+51 51 Golden State Warriors    4/4/17   2016      1                10                16
+52 52 Golden State Warriors   2/23/17   2016      3                 1                52
+53 53 Golden State Warriors   3/29/17   2016      1                 1                49
+54 54 Golden State Warriors  12/28/16   2016      4                 0                13
+55 55 Golden State Warriors  12/20/16   2016      1                 1                 0
+56 56 Golden State Warriors  11/26/16   2016      3                 2                 9
+57 57 Golden State Warriors  11/26/16   2016      4                 5                 3
+58 58 Golden State Warriors  12/30/16   2016      1                 7                31
+59 59 Golden State Warriors  12/20/16   2016      1                 1                49
+60 60 Golden State Warriors   3/29/17   2016      2                 0                49
+61 61 Golden State Warriors  11/19/16   2016      4                 2                47
+62 62 Golden State Warriors  11/18/16   2016      3                 7                18
+   shot_made_flag                    action_type      shot_type shot_distance
+1        shot_yes Cutting Finger Roll Layup Shot 2PT Field Goal             3
+2        shot_yes Cutting Finger Roll Layup Shot 2PT Field Goal             2
+3        shot_yes Cutting Finger Roll Layup Shot 2PT Field Goal             2
+4        shot_yes Cutting Finger Roll Layup Shot 2PT Field Goal             0
+5        shot_yes Cutting Finger Roll Layup Shot 2PT Field Goal             2
+6        shot_yes Cutting Finger Roll Layup Shot 2PT Field Goal             0
+7        shot_yes Cutting Finger Roll Layup Shot 2PT Field Goal             0
+8        shot_yes Cutting Finger Roll Layup Shot 2PT Field Goal             2
+9        shot_yes             Cutting Layup Shot 2PT Field Goal             1
+10       shot_yes             Cutting Layup Shot 2PT Field Goal             1
+11       shot_yes             Cutting Layup Shot 2PT Field Goal             0
+12       shot_yes             Cutting Layup Shot 2PT Field Goal             1
+13        shot_no             Cutting Layup Shot 2PT Field Goal             2
+14       shot_yes             Cutting Layup Shot 2PT Field Goal             0
+15       shot_yes             Cutting Layup Shot 2PT Field Goal             2
+16       shot_yes             Cutting Layup Shot 2PT Field Goal             1
+17       shot_yes             Cutting Layup Shot 2PT Field Goal             1
+18       shot_yes             Cutting Layup Shot 2PT Field Goal             1
+19       shot_yes             Cutting Layup Shot 2PT Field Goal             2
+20        shot_no             Cutting Layup Shot 2PT Field Goal             2
+21       shot_yes             Cutting Layup Shot 2PT Field Goal             1
+22       shot_yes             Cutting Layup Shot 2PT Field Goal             1
+23       shot_yes             Cutting Layup Shot 2PT Field Goal             1
+24       shot_yes             Cutting Layup Shot 2PT Field Goal             2
+25       shot_yes             Cutting Layup Shot 2PT Field Goal             2
+26       shot_yes             Cutting Layup Shot 2PT Field Goal             1
+27       shot_yes             Cutting Layup Shot 2PT Field Goal             0
+28        shot_no             Cutting Layup Shot 2PT Field Goal             2
+29       shot_yes             Cutting Layup Shot 2PT Field Goal             2
+30       shot_yes             Cutting Layup Shot 2PT Field Goal             1
+31       shot_yes             Cutting Layup Shot 2PT Field Goal             0
+32       shot_yes             Cutting Layup Shot 2PT Field Goal             0
+33       shot_yes             Cutting Layup Shot 2PT Field Goal             1
+34       shot_yes             Cutting Layup Shot 2PT Field Goal             1
+35       shot_yes             Cutting Layup Shot 2PT Field Goal             2
+36       shot_yes             Cutting Layup Shot 2PT Field Goal             2
+37       shot_yes              Driving Bank shot 2PT Field Goal            11
+38       shot_yes              Driving Bank shot 2PT Field Goal             6
+39       shot_yes              Driving Bank shot 2PT Field Goal             3
+40       shot_yes              Driving Bank shot 2PT Field Goal             5
+41       shot_yes              Driving Bank shot 2PT Field Goal            11
+42       shot_yes Driving Finger Roll Layup Shot 2PT Field Goal             1
+43       shot_yes Driving Finger Roll Layup Shot 2PT Field Goal             2
+44       shot_yes Driving Finger Roll Layup Shot 2PT Field Goal             2
+45       shot_yes Driving Finger Roll Layup Shot 2PT Field Goal             1
+46       shot_yes Driving Finger Roll Layup Shot 2PT Field Goal             2
+47       shot_yes Driving Finger Roll Layup Shot 2PT Field Goal             1
+48        shot_no Driving Finger Roll Layup Shot 2PT Field Goal             2
+49       shot_yes Driving Finger Roll Layup Shot 2PT Field Goal             3
+50       shot_yes Driving Finger Roll Layup Shot 2PT Field Goal             3
+51        shot_no Driving Finger Roll Layup Shot 2PT Field Goal             3
+52       shot_yes Driving Finger Roll Layup Shot 2PT Field Goal             2
+53        shot_no Driving Finger Roll Layup Shot 2PT Field Goal             0
+54       shot_yes Driving Finger Roll Layup Shot 2PT Field Goal             1
+55        shot_no Driving Finger Roll Layup Shot 2PT Field Goal             2
+56       shot_yes Driving Finger Roll Layup Shot 2PT Field Goal             2
+57       shot_yes Driving Finger Roll Layup Shot 2PT Field Goal             1
+58       shot_yes Driving Finger Roll Layup Shot 2PT Field Goal             0
+59       shot_yes Driving Finger Roll Layup Shot 2PT Field Goal             2
+60       shot_yes Driving Finger Roll Layup Shot 2PT Field Goal             1
+61       shot_yes Driving Finger Roll Layup Shot 2PT Field Goal             1
+62       shot_yes Driving Finger Roll Layup Shot 2PT Field Goal             1
+                 opponent    x  y          name minute
+1         New York Knicks   25 21 Stephen Curry     33
+2    New Orleans Pelicans    9 26 Stephen Curry     27
+3  Portland Trail Blazers  -22  2 Stephen Curry     19
+4         Houston Rockets    2  7 Stephen Curry     31
+5  Minnesota Timberwolves    1 26 Stephen Curry     34
+6         Milwaukee Bucks    2  7 Stephen Curry     43
+7          Indiana Pacers   -1  2 Stephen Curry     27
+8       San Antonio Spurs   28  0 Stephen Curry     23
+9      Los Angeles Lakers   13  6 Stephen Curry     26
+10        Toronto Raptors   -9  8 Stephen Curry     33
+11        Houston Rockets   -4 -5 Stephen Curry     39
+12 Minnesota Timberwolves   14  7 Stephen Curry     45
+13      Memphis Grizzlies  -24 -6 Stephen Curry     32
+14     Philadelphia 76ers   -7 -6 Stephen Curry      3
+15          Atlanta Hawks   20  7 Stephen Curry     11
+16       Dallas Mavericks   12 -1 Stephen Curry      4
+17           Phoenix Suns    0 11 Stephen Curry     27
+18     Philadelphia 76ers   12  7 Stephen Curry     43
+19   Los Angeles Clippers   -7 21 Stephen Curry      9
+20          Orlando Magic   22 18 Stephen Curry     31
+21      Memphis Grizzlies    4 11 Stephen Curry      4
+22   New Orleans Pelicans   17  7 Stephen Curry     33
+23     Los Angeles Lakers    1 11 Stephen Curry     34
+24   Los Angeles Clippers   22 16 Stephen Curry     42
+25 Portland Trail Blazers   -1 23 Stephen Curry      9
+26              Utah Jazz   -1 16 Stephen Curry     23
+27     Los Angeles Lakers    8 -2 Stephen Curry     46
+28      Memphis Grizzlies    9 21 Stephen Curry     28
+29      Memphis Grizzlies   24  7 Stephen Curry     10
+30   Los Angeles Clippers   -7 16 Stephen Curry      1
+31    Cleveland Cavaliers    1 -5 Stephen Curry     44
+32        Milwaukee Bucks    0  7 Stephen Curry     28
+33     Los Angeles Lakers   10 16 Stephen Curry     22
+34       Sacramento Kings    6 16 Stephen Curry      3
+35   Los Angeles Clippers   25  2 Stephen Curry      5
+36   Los Angeles Clippers    6 21 Stephen Curry     20
+37         Indiana Pacers -110 36 Stephen Curry     30
+38      Memphis Grizzlies  -43 46 Stephen Curry     47
+39 Minnesota Timberwolves   12 31 Stephen Curry     10
+40   Los Angeles Clippers  -52 18 Stephen Curry      8
+41           Phoenix Suns  -70 85 Stephen Curry     19
+42       Dallas Mavericks   10 16 Stephen Curry     16
+43 Portland Trail Blazers   -7 26 Stephen Curry      7
+44         Boston Celtics  -25  7 Stephen Curry     23
+45         Boston Celtics   -9 16 Stephen Curry     48
+46           Phoenix Suns   -1 21 Stephen Curry     35
+47      San Antonio Spurs    9 -5 Stephen Curry     31
+48         Denver Nuggets   17 11 Stephen Curry     10
+49          Brooklyn Nets   20 23 Stephen Curry     46
+50        Toronto Raptors  -29 11 Stephen Curry      5
+51 Minnesota Timberwolves   22 26 Stephen Curry      2
+52   Los Angeles Clippers  -12 16 Stephen Curry     35
+53      San Antonio Spurs   -2  8 Stephen Curry     11
+54        Toronto Raptors    0 16 Stephen Curry     48
+55              Utah Jazz   -9 28 Stephen Curry     11
+56 Minnesota Timberwolves    0 26 Stephen Curry     34
+57 Minnesota Timberwolves    6 16 Stephen Curry     43
+58       Dallas Mavericks    2  7 Stephen Curry      5
+59              Utah Jazz    2 21 Stephen Curry     11
+60      San Antonio Spurs  -19  2 Stephen Curry     24
+61        Milwaukee Bucks   15  7 Stephen Curry     46
+62         Boston Celtics    9 -5 Stephen Curry     29
+ [ reached 'max' / getOption("max.print") -- omitted 4272 rows ]
