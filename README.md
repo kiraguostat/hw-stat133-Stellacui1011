@@ -1,20 +1,2 @@
-# Stat 133, Spring 2019
-
-Private Repository for HW assignments of Stat 133 (Spring 2019)
-
-- Name: Your name (Stella Cui)
-- Github username: Stellacui1011
-- Email: address [at] stellacui@berkeley.edu
-- Lab section: 107
-- GSI: N/A
-
------
-
-## Assignments
-
-- [Demo](demo)
-- [Workout 1](workout1)
-- Workout 2
-- Workout 3
-
-
+# github
+My name is Stella Cui, a student from Stat133 class. This homework is about using R to create a shiny app that allows people to visualize, in an interactive way, some of the saving or investing scenarios of young people today. This shiny app includes inputs and outputs; inputs include initial amount, return rate, years, annual contribution, growth rate, and facet and are put in by people, and output turn them into relative ggplots and tables, which should change as the inputs change. This app aims at helping build a saving-investing modalities for people today, as it implies ways of calculating growth rate, annuity, discounted cash, and so on. 
