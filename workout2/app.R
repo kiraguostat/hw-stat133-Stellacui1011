@@ -69,31 +69,31 @@ server <- function(input, output) {
   output$timeline_plot <- renderPlot({
     
     future_value <- c()
-    for (i in 1:10){
+    for (i in 1:input$years){
       future_value[i]= input$initial*((1+(input$rate/100))^i)
     }
     
     future_value_annuity <- c()
-    for (i in 1:10){
+    for (i in 1:input$years){
       future_value_annuity[i]=input$initial*((1+(input$rate/100))^i)+input$a_contrib*((((1+(input$rate/100))^i)-1)/(input$rate/100))
     }
     
     future_value_growth_annuity <- c()
-    for (i in 1:10){
+    for (i in 1:input$years){
       future_value_growth_annuity[i]= input$initial*((1+(input$rate/100))^i)+(input$a_contrib*((((1+(input$rate/100))^i)-((1+(input$growth/100))^i))/((input$rate/100)-(input$growth/100))))
     }
     
-    Balances <- data.frame(year=0:10,no_contrib=c(input$initial,future_value), fixed_contrib=c(input$initial,future_value_annuity), growing_contrib=c(input$initial,future_value_growth_annuity))
+    Balances <- data.frame(year=0:input$years,no_contrib=c(input$initial,future_value), fixed_contrib=c(input$initial,future_value_annuity), growing_contrib=c(input$initial,future_value_growth_annuity))
     
     if (input$facet == "Yes") {
       df.m = melt(Balances, id.vars ="year", measure.vars = c("no_contrib","fixed_contrib","growing_contrib"))
       
-      ggplot(df.m, aes(year, value, colour = variable)) + geom_point() + geom_line() + scale_x_discrete(name ="Years", limits = c(0:10)) + ylab("Value") +  
+      ggplot(df.m, aes(year, value, colour = variable)) + geom_point() + geom_line() + scale_x_discrete(name ="Years", limits = c(0:input$years)) + ylab("Value") +  
         ggtitle("Three models of investing")+ theme_bw()+
         geom_area(aes(fill=variable,alpha = 0.1))  + facet_wrap(~variable)
     } else if (input$facet == "No"){
       df.m = melt(Balances, id.vars ="year", measure.vars = c("no_contrib","fixed_contrib","growing_contrib"))
-      ggplot(df.m, aes(year, value, colour = variable)) + geom_point() + geom_line() + scale_x_discrete(name ="Years", limits = c(0:10)) + ylab("Balance") +  
+      ggplot(df.m, aes(year, value, colour = variable)) + geom_point() + geom_line() + scale_x_discrete(name ="Years", limits = c(0:input$years)) + ylab("Balance") +  
         ggtitle("Growth of Investment Models") 
     }
     
@@ -101,20 +101,20 @@ server <- function(input, output) {
   
   Balances <- reactive({
     future_value <- c()
-    for (i in 0:10){
+    for (i in 1:input$years){
       future_value[i]= input$initial*((1+(input$rate/100))^i)
     }
     
     future_value_annuity <- c()
-    for (i in 0:10){
+    for (i in 1:input$years){
       future_value_annuity[i]=input$initial*((1+(input$rate/100))^i)+input$a_contrib*((((1+(input$rate/100))^i)-1)/(input$rate/100))
     }
     
     future_value_growth_annuity <- c()
-    for (i in 0:10){
+    for (i in 1:input$years){
       future_value_growth_annuity[i]= input$initial*((1+(input$rate/100))^i)+(input$a_contrib*((((1+(input$rate/100))^i)-((1+(input$growth/100))^i))/((input$rate/100)-(input$growth/100))))
     }
-    Balances <- data.frame(year=0:10,no_contrib=c(input$initial,future_value), fixed_contrib=c(input$initial,future_value_annuity), growing_contrib=c(input$initial,future_value_growth_annuity))
+    Balances <- data.frame(year=0:input$years,no_contrib=c(input$initial,future_value), fixed_contrib=c(input$initial,future_value_annuity), growing_contrib=c(input$initial,future_value_growth_annuity))
   })
   
   output$Balances <- renderPrint({(Balances())})
