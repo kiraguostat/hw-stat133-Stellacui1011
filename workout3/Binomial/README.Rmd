@@ -1,8 +1,10 @@
 ---
-title: "README.Rmd"
+title: "Binomial Package"
 author: "Stella Cui"
 date: "2019/5/2"
-output: html_document
+output:
+  github_document:
+    html_preview: false
 ---
 
 ```{r, echo = FALSE}

@@ -1,38 +1,69 @@
-Untitled
+Binomial Package
 ================
+Stella Cui
+2019/5/2
 
 **Binomial Package** \* Author Name: Stella Cui
 
-**Overview** The R package "Binomial" is a minimal implementation that calculates the relative probability of the certain number of successes in the given total number of trials.
+Overview
+--------
 
-**Steps** 1). Choose the inputs for the binaomial variables You can choose the inputs by using the function bin\_choose(n,k), where n is the total number of trials and k is the number of successes in n trials.
+`"binomial"` is a minimal [R](http://www.r-project.org/) package that calculates the relative probability of the certain number of successes in the given total number of trials.
 
-2). Get the probability with the given inputs (number of trials(n), successes(k), and probability(p)) You can get the probability by applying the function bin\_probability(k,n,p) after choosing those three inputs.
+-   `bin_mean()` for the mean of your desired binomial distribution.
+-   `bin_variance` for the variance of your desired binomial distribution.
+-   `bin_mode` for the mode of your desired binomial distribution.
+-   `bin_skewness` for the skeweneww of your desired binomial distribution.
+-   `bin_kurtosis` for the mean of your desired binomial distribution.
 
-3). Get a dataframe with the given inputs (k, n, and prob) After choosing the inputs, you can get a dataframe with a consecutive number of trials from 0 to n and their corresponding probability using the function bin\_distribution(n,p).
+Motivation
+----------
 
-4). Plot the probability dataframe Plot the histogram of the probability dataframe got through bin\_distribution(n,p) using the function plot().
+This package has been developed to illustrate some of the usage of Binomial Package.
 
-5). Getting cumulative probabilities for all possible successes values After choosing the inputs n, k, p, you will get a dataframe with a consequtive number of trails from 0 to nand their corresponding probability p and their commulative probability by the function bin\_cumulative(n,p).
+Installation
+------------
 
-6). Plot cumulative probabilities for all possible successes values Plotting the probability and cumulative dataframe we got before using the function plot().
+Install the development version from GitHub via the package `"devtools"`:
 
-7). Create a binomial variable with your desired inputs (n and p) You can create a "bin\_var" with the function bin\_variable(n,p).
+``` r
+# development version from GitHub:
+#install.packages("devtools") 
+# install "cointoss" (without vignettes)
+devtools::install_github("stellacui1011/binomial")
+# install "cointoss" (with vignettes)
+devtools::install_github("stellacui1011/binomial", build_vignettes = TRUE)
+```
 
-8). Get a summary of your binomial variable You can use the function summary() to get a summary of binomial variables.
+Usage
+-----
 
-9). Various measure of your binomial variable To get more details of your binomial variables, you can use the following funcions. bin\_mean for the mean of your desired binomial distribution. bin\_variance for the variance of your desired binomial distribution. bin\_mode for the mode of your desired binomial distribution. bin\_skewneww for the skeweneww of your desired binomial distribution. bin\_kurtosis for the mean of your desired binomial distribution.
+-   First, loading the package using library(Binomial)
+-   Second, choosing the function you want to test
+-   Third, choosing your input, such as the number of trails, that of successes, and probability
+-   Fourth, get the output from your inputs and functions
 
-**Motivation** This package has been developed to illustrate the usage of Binomial Package
+``` r
+#The followings are various examples of using my Binomial package
+bin_choose(n=10,k=1)
+#> [1] 10
+bin_probability(1,10,0.1)
+#> [1] 0.3874205
+bin_cum <- bin_cumulative(5,0.1)
+plot(bin_cum)
+```
 
-**Installation** development version from GitHub install.packages("devtools")
+![](README-unnamed-chunk-2-1.png)
 
-install "Binomial" (without vignettes) devtools::install\_github("<https://github.com/Stellacui1011/github>")
-
-install "Binomial" (with vignettes) devtools::install\_github("stat133", build\_vignettes = TRUE)
-
-**Usage** First, loading the package using library(Binomial) Second, choosing the function you want to test Third, choosing your input, such as the number of trails, that of successes, and probability Fourth, get the output from your inputs and functions
-
-The followings are various examples of using my Binomial package: bin\_choose(n=10,k=1) bin\_probability(1,10,0.1) bin\_dis &lt;- bin\_distribution(n=2,p=0.2) plot(bin\_dis) bin\_cum &lt;- bin\_cumulative(5,0.1) plot(bin\_cum) bin\_example &lt;- bin\_variable(2,0,1) summary(bin\_example) bin\_mean(2,0.1) bin\_variance(2,0.1) bin\_mode(10,0.1) bin\_skewness(10,0.1) bin\_kurtosis(10,0.1)
+``` r
+bin_mean(2,0.1)
+#> [1] 0.2
+bin_variance(2,0.1)
+#> [1] 0.18
+bin_mode(10,0.1)
+#> [1] 1
+bin_skewness(10,0.1)
+#> [1] 0.843274
+```
 
 **trials = n, successes = k, and probability = prob or p**
