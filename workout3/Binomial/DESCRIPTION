@@ -1,0 +1,16 @@
+Package: binomial
+Type: Package
+Title: Binomial Package
+Version: 0.1.0
+Author: Stella Cui
+Maintainer: The package maintainer <stellacui@berkeley.edu> 
+Description: Provide functions to calculate probabilities of certain event with inputs including trials, successes, and probabilities through 
+    different function the package has
+License: GPL-2
+Encoding: UTF-8
+LazyData: true
+Suggests: knitr,
+    rmarkdown,
+    testthat
+VignetteBuilder: knitr
+RoxygenNote: 6.1.1

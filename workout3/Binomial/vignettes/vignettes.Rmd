@@ -1,0 +1,82 @@
+---
+title: "Vignettes"
+author: "Stella Cui"
+date: "2019/5/2"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r setup, include=FALSE, echo = FALSE, message = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(binomial)
+library(ggplot2)
+```
+
+Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The 'html_vignette' output type provides a custom style sheet (and tweak some options) to ensure 
+
+-Never use retina figures
+-Has a smaller default figure size
+-Uses a custom CSS stylesheet instead of the default Twitter Bootstrap style
+
+##binomial
+
+The package "binomial" is a minimal implementation for calculating the relative probability of number of successes in total trials by using the given number of trials, successes and probability.
+
+###1). Choose inputs for binomial variables
+You can choose inputs by using the function "bin_choose(n,k)", where n is the total number of trials and k is the number of successes in trials.
+```{r}
+bin_choose(n=10,k=2)
+```
+###2). Get the probability of the given inputs n, k, and prob
+Get the probability with the given inputs (number of trials(n), successes(k), and probability(p))
+You can get the probability by applying the function bin_probability(k,n,p) after choosing those three inputs.
+```{r}
+bin_probability(success=2,trials=5,prob =0.5)
+```
+###3).Get a dataframe with the given inputs (k, n, and prob)
+After choosing the inputs, you can get a dataframe with a consecutive number of trials from 0 to n and their corresponding probability using the function bin_distribution(n,p). 
+```{r}
+distribution1 <- bin_distribution(trials=10, prob=0.2)
+distribution1
+```
+###4). Plot the probability dataframe
+Plot the histogram of the probability dataframe got through bin_distribution(n,p) using the function plot().
+```{r}
+plot(distribution1)
+```
+###5). Getting cumulative probabilities for all possible successes values
+After choosing the inputs n, k, p, you will get a dataframe with a consequtive number of trails from 0 to nand their corresponding probability p and their commulative probability by the function bin_cumulative(n,p).
+```{r}
+bin_cum <- bin_cumulative(trials = 5,prob=0.2)
+bin_cum
+```
+###6). Plot cumulative probabilities for all possible successes values
+Plotting the probability and cumulative dataframe we got before using the function plot().
+```{r}
+plot(bin_cum)
+```
+###7). Create a binomial variable with your desired inputs (n and p)
+You can create a "bin_var" with the function bin_variable(n,p).
+```{r}
+bin_var <- bin_variable(trials = 5, prob = 0.3)
+bin_var
+```
+###8). Get a summary of your binomial variable
+You can use the function summary() to get a summary of binomial variables.
+```{r}
+bin_sum <- summary(bin_var)
+bin_sum
+```
+###9). Various measure of your binomial variable
+To get more details of your binomial variables, you can use the following funcions.
+```{r}
+bin_mean #for the mean of your desired binomial distribution.
+bin_variance #for the variance of your desired binomial distribution.
+bin_mode #for the mode of your desired binomial distribution.
+bin_skewness #for the skeweneww of your desired binomial distribution.
+bin_kurtosis #for the mean of your desired binomial distribution.
+```
+
